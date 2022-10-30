@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 import create from "zustand";
+import { persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 
 import type { SubmissionFormRequest } from "lib/models/submission-form";
@@ -30,11 +31,17 @@ type SubmissionFormAction = {
 type SubmissionFormStore = SubmissionFormState & SubmissionFormAction;
 
 export const useSubmissionFormStore = create(
-  immer<SubmissionFormStore>((set) => ({
-    ...INITIAL_DATA,
-    updateForm: (obj) =>
-      set((state) => {
-        state.form = { ...state.form, ...obj };
-      }),
-  }))
+  persist(
+    immer<SubmissionFormStore>((set) => ({
+      ...INITIAL_DATA,
+      updateForm: (obj) =>
+        set((state) => {
+          state.form = { ...state.form, ...obj };
+        }),
+    })),
+    {
+      name: "submission-form",
+      getStorage: () => sessionStorage,
+    }
+  )
 );
