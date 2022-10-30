@@ -40,7 +40,8 @@ export const useSubmissionFormStore = create(
         }),
     })),
     {
-      name: "submission-form",
+      // btoa("submission-form")
+      name: "c3VibWlzc2lvbi1mb3Jt",
       getStorage: () => sessionStorage,
     }
   )
