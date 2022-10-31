@@ -26,6 +26,7 @@ const INITIAL_DATA: SubmissionFormState = {
 
 type SubmissionFormAction = {
   updateForm: (obj: Partial<SubmissionFormRequest>) => void;
+  resetForm: () => void;
 };
 
 type SubmissionFormStore = SubmissionFormState & SubmissionFormAction;
@@ -38,6 +39,7 @@ export const useSubmissionFormStore = create(
         set((state) => {
           state.form = { ...state.form, ...obj };
         }),
+      resetForm: () => set(INITIAL_DATA),
     })),
     {
       // btoa("submission-form")
