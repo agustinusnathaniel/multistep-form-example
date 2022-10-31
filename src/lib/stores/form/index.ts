@@ -3,25 +3,28 @@ import create from "zustand";
 import { persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 
-import type { SubmissionFormRequest } from "lib/models/submission-form";
+import type { SubmissionFormRequest } from "lib/models/form/request";
 
 type SubmissionFormState = {
   form: SubmissionFormRequest;
+  currentStep: Array<number>;
+  overrideCurrentStep?: number;
 };
 
 const INITIAL_DATA: SubmissionFormState = {
   form: {
     name: "",
     email: "",
+    age: 0,
     phoneNumber: "",
 
     price: 0,
-    age: 0,
     description: "",
-
     categories: [],
+
     inviteCode: "",
   },
+  currentStep: [0],
 };
 
 type SubmissionFormAction = {

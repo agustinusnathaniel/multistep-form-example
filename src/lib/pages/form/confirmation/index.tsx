@@ -13,7 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
-import type { SubmissionFormRequest } from "lib/models/submission-form";
+import type { SubmissionFormRequest } from "lib/models/form/request";
 import { handleRouteBack } from "lib/utils/handleRouteBack";
 
 import { useConfirmation } from "./hook";

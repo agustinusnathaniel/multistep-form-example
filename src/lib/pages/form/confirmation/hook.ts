@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import * as React from "react";
 
-import type { SubmissionFormRequest } from "lib/models/submission-form";
+import type { SubmissionFormRequest } from "lib/models/form/request";
 import { useSubmissionFormStore } from "lib/stores/form";
 
 export const useConfirmation = () => {

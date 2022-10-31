@@ -1,32 +1,25 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/router";
-import * as React from "react";
 import { useForm } from "react-hook-form";
 
+import type { UserDataForm } from "lib/models/form/user-data";
+import { userDataFormScheme } from "lib/models/form/user-data";
 import { useSubmissionFormStore } from "lib/stores/form";
-
-import type { UserDataForm } from "./types";
+import { useUserData } from "lib/stores/form/useUserData";
 
 export const useUserDataForm = () => {
   const router = useRouter();
-  const form = useSubmissionFormStore((state) => state.form);
-  const defaultValue: UserDataForm = React.useMemo(
-    () => ({
-      name: form.name,
-      age: form.age,
-      email: form.email,
-      phoneNumber: form.phoneNumber,
-    }),
-    [form]
-  );
+  const { storedUserData } = useUserData();
   const updateForm = useSubmissionFormStore((state) => state.updateForm);
   const {
     register,
     handleSubmit,
     getValues,
-    formState: { isValid },
+    formState: { isValid, errors, isDirty },
   } = useForm<UserDataForm>({
-    defaultValues: defaultValue,
+    defaultValues: storedUserData,
     mode: "onChange",
+    resolver: zodResolver(userDataFormScheme),
   });
 
   const proceedToItemForm = () => {
@@ -48,5 +41,7 @@ export const useUserDataForm = () => {
     register,
     handleClickNext: handleSubmit(proceedToItemForm),
     isValid,
+    isDirty,
+    errors,
   };
 };

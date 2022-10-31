@@ -8,7 +8,7 @@ import { useUserDataForm } from "./hook";
 
 const UserDataFormPage = () => {
   const router = useRouter();
-  const { register, handleClickNext, isValid } = useUserDataForm();
+  const { register, handleClickNext, errors } = useUserDataForm();
 
   return (
     <Grid gap={6}>
@@ -19,19 +19,39 @@ const UserDataFormPage = () => {
       </Box>
 
       <Grid gap={4}>
-        <ControlledInput {...register("name")} label="Name" type="text" />
-        <ControlledInput {...register("age")} label="Age" type="number" />
-        <ControlledInput {...register("email")} label="E-mail" type="email" />
+        <ControlledInput
+          {...register("name")}
+          label="Name"
+          type="text"
+          isInvalid={!!errors.name?.message}
+          errorText={errors.name?.message}
+        />
+        <ControlledInput
+          {...register("age", {
+            valueAsNumber: true,
+          })}
+          label="Age"
+          type="number"
+          isInvalid={!!errors.age?.message}
+          errorText={errors.age?.message}
+        />
+        <ControlledInput
+          {...register("email")}
+          label="E-mail"
+          type="email"
+          isInvalid={!!errors.email?.message}
+          errorText={errors.email?.message}
+        />
         <ControlledInput
           {...register("phoneNumber")}
           label="Phone Number"
           type="tel"
+          isInvalid={!!errors.phoneNumber?.message}
+          errorText={errors.phoneNumber?.message}
         />
       </Grid>
 
-      <Button onClick={handleClickNext} isDisabled={!isValid}>
-        Next
-      </Button>
+      <Button onClick={handleClickNext}>Next</Button>
     </Grid>
   );
 };
