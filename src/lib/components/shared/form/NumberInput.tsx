@@ -21,7 +21,7 @@ const AppNumberInput = forwardRef(
       isRequired,
       min = 0,
       max,
-      borderRadius = 24,
+      borderRadius,
       errorBorderColor = "red.200",
       ...numberInputProps
     }: AppNumberInputProps,

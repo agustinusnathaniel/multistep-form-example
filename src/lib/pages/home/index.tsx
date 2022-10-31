@@ -1,9 +1,6 @@
-import { Flex } from "@chakra-ui/react";
+import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 import { NextSeo } from "next-seo";
-
-import CTASection from "lib/components/samples/CTASection";
-import SomeImage from "lib/components/samples/SomeImage";
-import SomeText from "lib/components/samples/SomeText";
+import Link from "next/link";
 
 const Home = () => {
   return (
@@ -17,9 +14,16 @@ const Home = () => {
       w="full"
     >
       <NextSeo title="Home" />
-      <SomeText />
-      <SomeImage />
-      <CTASection />
+
+      <Box textAlign="center">
+        <Heading>Multi Step Form</Heading>
+        <Text>with persisted state between session</Text>
+        <Text fontSize="xs">Powered by react-hook-form + zustand</Text>
+      </Box>
+
+      <Button as={Link} href="/form/user-data">
+        Enter form
+      </Button>
     </Flex>
   );
 };

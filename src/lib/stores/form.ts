@@ -36,9 +36,7 @@ export const useSubmissionFormStore = create(
     immer<SubmissionFormStore>((set) => ({
       ...INITIAL_DATA,
       updateForm: (obj) =>
-        set((state) => {
-          state.form = { ...state.form, ...obj };
-        }),
+        set((state) => ({ form: { ...state.form, ...obj } })),
       resetForm: () => set(INITIAL_DATA),
     })),
     {

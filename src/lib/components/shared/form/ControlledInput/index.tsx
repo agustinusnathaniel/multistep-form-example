@@ -11,6 +11,7 @@ import {
   InputRightAddon,
   InputRightElement,
 } from "@chakra-ui/react";
+import * as React from "react";
 
 import type { FormControlWrapperProps } from "lib/components/shared/form/FormControlWrapper";
 import FormControlWrapper from "lib/components/shared/form/FormControlWrapper";
@@ -23,63 +24,73 @@ export type ControlledInputProps = {
 } & FormControlWrapperProps &
   InputProps;
 
-const ControlledInput = ({
-  label,
-  errorText,
-  errorTextColor,
-  helperText,
-  helperTextColor,
-  isInvalid,
-  isLoaded,
-  isRequired,
-  labelAddon,
-  leftElement,
-  leftAddon,
-  rightElement,
-  rightAddon,
-  ...inputProps
-}: ControlledInputProps) => {
-  const hasAddons = !!(leftElement || leftAddon || rightElement || rightAddon);
+const ControlledInput = React.forwardRef(
+  (
+    {
+      label,
+      errorText,
+      errorTextColor,
+      helperText,
+      helperTextColor,
+      isInvalid,
+      isLoaded,
+      isRequired,
+      labelAddon,
+      leftElement,
+      leftAddon,
+      rightElement,
+      rightAddon,
+      ...inputProps
+    }: ControlledInputProps,
+    ref: React.ForwardedRef<HTMLInputElement>
+  ) => {
+    const hasAddons = !!(
+      leftElement ||
+      leftAddon ||
+      rightElement ||
+      rightAddon
+    );
 
-  return (
-    <FormControlWrapper
-      label={label}
-      errorText={errorText}
-      errorTextColor={errorTextColor}
-      helperText={helperText}
-      helperTextColor={helperTextColor}
-      isInvalid={isInvalid}
-      isRequired={isRequired}
-      labelAddon={labelAddon}
-      isLoaded={isLoaded}
-    >
-      {hasAddons ? (
-        <InputGroup>
-          {leftAddon ? (
-            <InputLeftAddon borderRadius={24} paddingX={2}>
-              {leftAddon}
-            </InputLeftAddon>
-          ) : (
-            leftElement && <InputLeftElement>{leftElement}</InputLeftElement>
-          )}
+    return (
+      <FormControlWrapper
+        label={label}
+        errorText={errorText}
+        errorTextColor={errorTextColor}
+        helperText={helperText}
+        helperTextColor={helperTextColor}
+        isInvalid={isInvalid}
+        isRequired={isRequired}
+        labelAddon={labelAddon}
+        isLoaded={isLoaded}
+      >
+        {hasAddons ? (
+          <InputGroup>
+            {leftAddon ? (
+              <InputLeftAddon borderRadius={24} paddingX={2}>
+                {leftAddon}
+              </InputLeftAddon>
+            ) : (
+              leftElement && <InputLeftElement>{leftElement}</InputLeftElement>
+            )}
 
-          <Input {...inputProps} isRequired={isRequired} />
+            <Input ref={ref} {...inputProps} isRequired={isRequired} />
 
-          {rightAddon ? (
-            <InputRightAddon borderRadius={24} paddingX={2}>
-              {rightAddon}
-            </InputRightAddon>
-          ) : (
-            rightElement && (
-              <InputRightElement>{rightElement}</InputRightElement>
-            )
-          )}
-        </InputGroup>
-      ) : (
-        <Input {...inputProps} isRequired={isRequired} />
-      )}
-    </FormControlWrapper>
-  );
-};
+            {rightAddon ? (
+              <InputRightAddon borderRadius={24} paddingX={2}>
+                {rightAddon}
+              </InputRightAddon>
+            ) : (
+              rightElement && (
+                <InputRightElement>{rightElement}</InputRightElement>
+              )
+            )}
+          </InputGroup>
+        ) : (
+          <Input ref={ref} {...inputProps} isRequired={isRequired} />
+        )}
+      </FormControlWrapper>
+    );
+  }
+);
 
 export default ControlledInput;

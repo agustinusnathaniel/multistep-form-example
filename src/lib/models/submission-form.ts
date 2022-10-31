@@ -2,11 +2,11 @@ export type SubmissionFormRequest = {
   name: string;
   email: string;
   phoneNumber: string;
+  age: number;
 
   price: number;
-  age: number;
   description: string;
-
   categories: Array<string>;
-  inviteCode: string;
+
+  inviteCode?: string;
 };
