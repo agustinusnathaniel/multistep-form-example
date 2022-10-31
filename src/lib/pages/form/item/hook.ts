@@ -29,7 +29,7 @@ export const useItemForm = () => {
     mode: "onChange",
   });
 
-  const proceedToItemForm = () => {
+  const proceedToConfirmation = () => {
     if (!isValid) {
       return;
     }
@@ -45,7 +45,7 @@ export const useItemForm = () => {
 
   return {
     register,
-    handleClickNext: handleSubmit(proceedToItemForm),
+    handleClickNext: handleSubmit(proceedToConfirmation),
     isValid,
   };
 };
