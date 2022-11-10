@@ -17,12 +17,18 @@ const Home = () => {
 
       <Box textAlign="center">
         <Heading>Multi Step Form</Heading>
-        <Text>with persisted state between session</Text>
-        <Text fontSize="xs">Powered by react-hook-form + zustand</Text>
+        <Text color="gray">with persisted state between session</Text>
+        <Text fontSize="xs" color="gray">
+          Powered by react-hook-form + zustand
+        </Text>
       </Box>
 
       <Button as={Link} href="/form/user-data">
         Multi page
+      </Button>
+
+      <Button as={Link} href="/form/submission">
+        Single page
       </Button>
     </Flex>
   );

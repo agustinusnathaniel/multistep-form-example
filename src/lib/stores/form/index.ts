@@ -7,8 +7,6 @@ import type { SubmissionFormRequest } from "lib/models/form/request";
 
 type SubmissionFormState = {
   form: SubmissionFormRequest;
-  currentStep: Array<number>;
-  overrideCurrentStep?: number;
 };
 
 const INITIAL_DATA: SubmissionFormState = {
@@ -24,7 +22,6 @@ const INITIAL_DATA: SubmissionFormState = {
 
     inviteCode: "",
   },
-  currentStep: [0],
 };
 
 type SubmissionFormAction = {
