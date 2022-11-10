@@ -22,7 +22,7 @@ const Home = () => {
       </Box>
 
       <Button as={Link} href="/form/user-data">
-        Enter form
+        Multi page
       </Button>
     </Flex>
   );
