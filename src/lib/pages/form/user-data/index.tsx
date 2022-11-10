@@ -25,6 +25,7 @@ const UserDataFormPage = () => {
           type="text"
           isInvalid={!!errors.name?.message}
           errorText={errors.name?.message}
+          placeholder="Your name"
         />
         <ControlledInput
           {...register("age", {
@@ -34,6 +35,7 @@ const UserDataFormPage = () => {
           type="number"
           isInvalid={!!errors.age?.message}
           errorText={errors.age?.message}
+          placeholder="Your age"
         />
         <ControlledInput
           {...register("email")}
@@ -41,6 +43,7 @@ const UserDataFormPage = () => {
           type="email"
           isInvalid={!!errors.email?.message}
           errorText={errors.email?.message}
+          placeholder="name@example.com"
         />
         <ControlledInput
           {...register("phoneNumber")}
@@ -48,6 +51,7 @@ const UserDataFormPage = () => {
           type="tel"
           isInvalid={!!errors.phoneNumber?.message}
           errorText={errors.phoneNumber?.message}
+          placeholder="62812345678"
         />
       </Grid>
 

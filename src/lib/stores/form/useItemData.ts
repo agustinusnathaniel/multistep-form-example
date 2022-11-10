@@ -3,10 +3,11 @@ import type { NextRouter } from "next/router";
 import * as React from "react";
 
 import type { ItemForm } from "lib/models/form/item-form";
-import { userDataFormScheme } from "lib/models/form/user-data";
+import { itemFormScheme } from "lib/models/form/item-form";
 
 import { useSubmissionFormStore } from "./index";
 import { showValidationWarning } from "./showValidationWarning";
+import { useUserDataListener } from "./useUserData";
 
 export const useItemData = () => {
   const form = useSubmissionFormStore((state) => state.form);
@@ -19,7 +20,7 @@ export const useItemData = () => {
     [form]
   );
   const isItemDataValid = React.useMemo(
-    () => !!userDataFormScheme.safeParse(storedItemData).success,
+    () => !!itemFormScheme.safeParse(storedItemData).success,
     [storedItemData]
   );
 
@@ -44,4 +45,6 @@ export const useItemDataListener = ({
       });
     }
   }, [isItemDataValid, router, toast]);
+
+  useUserDataListener({ router, toast });
 };

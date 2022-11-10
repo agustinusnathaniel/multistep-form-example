@@ -17,7 +17,7 @@ export const submissionFormRequestScheme = z.object({
     .max(99, { message: "Maximum 99" }),
 
   price: z.number({ invalid_type_error: "Price must be filled" }).min(0),
-  description: z.string(),
+  description: z.string().optional(),
   categories: z.array(z.string()),
 
   inviteCode: z.string().optional(),

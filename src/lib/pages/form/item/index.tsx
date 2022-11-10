@@ -19,11 +19,17 @@ const ItemFormPage = () => {
       </Box>
 
       <Grid gap={4}>
-        <ControlledInput {...register("price")} label="Price" type="number" />
+        <ControlledInput
+          {...register("price")}
+          label="Price"
+          type="number"
+          placeholder="item price"
+        />
         <ControlledInput
           {...register("description")}
           label="Description"
           type="text"
+          placeholder="some description"
         />
       </Grid>
 
