@@ -1,10 +1,12 @@
 import type { NextRouter } from "next/router";
 
-export const handleRouteBack = (router: NextRouter) => () => {
-  if (window.history.length > 2) {
-    router.back();
-    return;
-  }
+export const handleRouteBack =
+  (router: NextRouter, to = "/") =>
+  () => {
+    if (window.history.length > 2 && document.referrer === to) {
+      router.back();
+      return;
+    }
 
-  router.push("/");
-};
+    router.replace(to);
+  };

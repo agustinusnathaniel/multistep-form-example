@@ -16,7 +16,7 @@ const ItemFormPage = () => {
   return (
     <ItemForm
       onSuccessfulStore={onSuccessfulStore}
-      onClickBack={handleRouteBack(router)}
+      onClickBack={handleRouteBack(router, "/form/user-data")}
     />
   );
 };

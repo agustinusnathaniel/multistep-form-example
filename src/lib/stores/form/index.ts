@@ -1,6 +1,5 @@
-/* eslint-disable no-param-reassign */
-import create from "zustand";
-import { persist } from "zustand/middleware";
+import { create } from "zustand";
+import { createJSONStorage, persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 
 import type { SubmissionFormRequest } from "lib/models/form/request";
@@ -42,7 +41,7 @@ export const useSubmissionFormStore = create(
     {
       // btoa("submission-form")
       name: "c3VibWlzc2lvbi1mb3Jt",
-      getStorage: () => sessionStorage,
+      storage: createJSONStorage(() => sessionStorage),
     }
   )
 );

@@ -22,7 +22,7 @@ const FormConfirmationPage = () => {
 
   return (
     <FormInputConfirmation
-      onClickBack={handleRouteBack(router)}
+      onClickBack={handleRouteBack(router, "/form/item")}
       onClickNext={handleClickNext}
     />
   );
