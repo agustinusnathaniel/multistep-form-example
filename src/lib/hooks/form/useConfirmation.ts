@@ -12,14 +12,6 @@ export const useConfirmation = () => {
   const storedForm = useSubmissionFormStore((state) => state.form);
   const [form, setForm] = React.useState<SubmissionFormRequest>();
 
-  const resetForm = useSubmissionFormStore((state) => state.resetForm);
-
-  const proceedToSuccessScreen = () => {
-    router.push("/form/success").then(() => {
-      resetForm();
-    });
-  };
-
   React.useEffect(() => {
     setForm(storedForm);
   }, [storedForm]);
@@ -28,6 +20,5 @@ export const useConfirmation = () => {
 
   return {
     form,
-    handleClickNext: proceedToSuccessScreen,
   };
 };

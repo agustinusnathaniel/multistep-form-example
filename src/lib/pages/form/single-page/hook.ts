@@ -19,8 +19,9 @@ export const useSubmissionFormWrapper = () => {
   const resetForm = useSubmissionFormStore((state) => state.resetForm);
 
   const redirectToSuccessPage = () => {
-    resetForm();
-    router.push("/form/success");
+    router.push("/form/success").then(() => {
+      resetForm();
+    });
   };
 
   const handleTapNext = () => {

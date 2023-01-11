@@ -1,5 +1,4 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 
 import type { UserDataForm } from "lib/models/form/user-data";
@@ -7,8 +6,13 @@ import { userDataFormScheme } from "lib/models/form/user-data";
 import { useSubmissionFormStore } from "lib/stores/form";
 import { useUserData } from "lib/stores/form/useUserData";
 
-export const useUserDataForm = () => {
-  const router = useRouter();
+export interface UseUserDataFormParams {
+  onSuccessfulStore?: () => void;
+}
+
+export const useUserDataForm = ({
+  onSuccessfulStore,
+}: UseUserDataFormParams) => {
   const { storedUserData } = useUserData();
   const updateForm = useSubmissionFormStore((state) => state.updateForm);
   const {
@@ -22,24 +26,24 @@ export const useUserDataForm = () => {
     resolver: zodResolver(userDataFormScheme),
   });
 
-  const proceedToItemForm = () => {
+  const storeUserData = () => {
     if (!isValid) {
       return;
     }
     const values = getValues();
-    const hello = {
+    const userData = {
       name: values.name,
       age: values.age,
       email: values.email,
       phoneNumber: values.phoneNumber,
     };
-    updateForm(hello);
-    router.push("/form/item");
+    updateForm(userData);
+    onSuccessfulStore?.();
   };
 
   return {
     register,
-    handleClickNext: handleSubmit(proceedToItemForm),
+    handleClickNext: handleSubmit(storeUserData),
     isValid,
     isDirty,
     errors,
