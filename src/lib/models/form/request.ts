@@ -16,7 +16,12 @@ export const submissionFormRequestScheme = z.object({
     .min(1, { message: "Minimum 1" })
     .max(99, { message: "Maximum 99" }),
 
-  price: z.number({ invalid_type_error: "Price must be filled" }).min(0),
+  price: z
+    .number({
+      required_error: "Price must be filled",
+      invalid_type_error: "Price must be filled",
+    })
+    .min(1, { message: "Minimum 1" }),
   description: z.string().optional(),
   categories: z.array(z.string()),
 
