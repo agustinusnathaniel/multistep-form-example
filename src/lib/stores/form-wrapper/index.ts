@@ -1,4 +1,4 @@
-import create from "zustand";
+import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 type SubmissionFormWrapperState = {
@@ -13,6 +13,7 @@ const INITIAL_DATA: SubmissionFormWrapperState = {
 type SubmissionFormWrapperAction = {
   setCurrentStep: (currentStep: number) => void;
   setOverrideCurrentStep: (overrideCurrentStep: number) => void;
+  resetSteps: () => void;
 };
 
 type SubmissionFormWrapperStore = SubmissionFormWrapperState &
@@ -25,6 +26,7 @@ export const useSubmissionFormWrapperStore = create(
       setCurrentStep: (currentStep) => set({ currentStep }),
       setOverrideCurrentStep: (overrideCurrentStep) =>
         set({ overrideCurrentStep }),
+      resetSteps: () => set(INITIAL_DATA),
     }),
     {
       // btoa("submission-form-wrapper")

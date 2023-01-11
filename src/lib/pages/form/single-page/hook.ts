@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import { shallow } from "zustand/shallow";
 
 import { useHasHydrated } from "lib/hooks/useHasHydrated";
 import { useSubmissionFormStore } from "lib/stores/form";
@@ -13,14 +14,19 @@ export const useSubmissionFormWrapper = () => {
   const currentStep = useSubmissionFormWrapperStore(
     (state) => state.currentStep
   );
-  const setCurrentStep = useSubmissionFormWrapperStore(
-    (action) => action.setCurrentStep
+  const { setCurrentStep, resetSteps } = useSubmissionFormWrapperStore(
+    (action) => ({
+      setCurrentStep: action.setCurrentStep,
+      resetSteps: action.resetSteps,
+    }),
+    shallow
   );
   const resetForm = useSubmissionFormStore((state) => state.resetForm);
 
   const redirectToSuccessPage = () => {
     router.push("/form/success").then(() => {
       resetForm();
+      resetSteps();
     });
   };
 
