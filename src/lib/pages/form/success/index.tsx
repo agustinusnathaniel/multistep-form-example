@@ -8,12 +8,10 @@ import {
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 
+import { handleRouteBack } from "lib/utils/handleRouteBack";
+
 const SuccessPage = () => {
   const router = useRouter();
-
-  const handleBackToHome = () => {
-    router.replace("/");
-  };
 
   return (
     <Grid gap={6}>
@@ -36,7 +34,7 @@ const SuccessPage = () => {
         </AlertDescription>
       </Alert>
 
-      <Button onClick={handleBackToHome}>Back to Home</Button>
+      <Button onClick={handleRouteBack(router)}>Back to Home</Button>
     </Grid>
   );
 };
