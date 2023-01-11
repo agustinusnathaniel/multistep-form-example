@@ -8,7 +8,7 @@ import { useItemForm } from "./hook";
 
 const ItemFormPage = () => {
   const router = useRouter();
-  const { register, handleClickNext, isValid } = useItemForm();
+  const { register, handleClickNext, errors } = useItemForm();
 
   return (
     <Grid gap={6}>
@@ -20,10 +20,13 @@ const ItemFormPage = () => {
 
       <Grid gap={4}>
         <ControlledInput
-          {...register("price")}
+          {...register("price", {
+            valueAsNumber: true,
+          })}
           label="Price"
           type="number"
           placeholder="item price"
+          errorText={errors.price?.message}
         />
         <ControlledInput
           {...register("description")}
@@ -33,9 +36,7 @@ const ItemFormPage = () => {
         />
       </Grid>
 
-      <Button onClick={handleClickNext} isDisabled={!isValid}>
-        Next
-      </Button>
+      <Button onClick={handleClickNext}>Next</Button>
     </Grid>
   );
 };

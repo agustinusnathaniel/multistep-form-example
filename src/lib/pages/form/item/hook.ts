@@ -27,7 +27,7 @@ export const useItemForm = () => {
     register,
     handleSubmit,
     getValues,
-    formState: { isValid },
+    formState: { isValid, errors },
   } = useForm<ItemForm>({
     defaultValues: defaultValue,
     mode: "onChange",
@@ -54,5 +54,6 @@ export const useItemForm = () => {
     register,
     handleClickNext: handleSubmit(proceedToConfirmation),
     isValid,
+    errors,
   };
 };

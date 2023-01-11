@@ -13,7 +13,7 @@ const INITIAL_DATA: SubmissionFormState = {
   form: {
     name: "",
     email: "",
-    age: 0,
+    age: 21,
     phoneNumber: "",
 
     price: 0,

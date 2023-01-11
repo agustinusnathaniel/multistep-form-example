@@ -23,7 +23,6 @@ const UserDataFormPage = () => {
           {...register("name")}
           label="Name"
           type="text"
-          isInvalid={!!errors.name?.message}
           errorText={errors.name?.message}
           placeholder="Your name"
         />
@@ -33,7 +32,6 @@ const UserDataFormPage = () => {
           })}
           label="Age"
           type="number"
-          isInvalid={!!errors.age?.message}
           errorText={errors.age?.message}
           placeholder="Your age"
         />
@@ -41,7 +39,6 @@ const UserDataFormPage = () => {
           {...register("email")}
           label="E-mail"
           type="email"
-          isInvalid={!!errors.email?.message}
           errorText={errors.email?.message}
           placeholder="name@example.com"
         />
@@ -49,7 +46,6 @@ const UserDataFormPage = () => {
           {...register("phoneNumber")}
           label="Phone Number"
           type="tel"
-          isInvalid={!!errors.phoneNumber?.message}
           errorText={errors.phoneNumber?.message}
           placeholder="62812345678"
         />

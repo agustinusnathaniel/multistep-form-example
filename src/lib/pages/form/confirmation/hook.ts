@@ -14,9 +14,10 @@ export const useConfirmation = () => {
 
   const resetForm = useSubmissionFormStore((state) => state.resetForm);
 
-  const proceedToItemForm = () => {
-    resetForm();
-    router.push("/form/success");
+  const proceedToSuccessScreen = () => {
+    router.push("/form/success").then(() => {
+      resetForm();
+    });
   };
 
   React.useEffect(() => {
@@ -27,6 +28,6 @@ export const useConfirmation = () => {
 
   return {
     form,
-    handleClickNext: proceedToItemForm,
+    handleClickNext: proceedToSuccessScreen,
   };
 };
