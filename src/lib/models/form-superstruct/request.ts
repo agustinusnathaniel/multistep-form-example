@@ -7,10 +7,20 @@ export const submissionFormRequestScheme = ss.object({
     }
     return true;
   }),
-  email: ss.refine(ss.string(), "email", (email) => email.length > 10),
-  phoneNumber: ss.refine(ss.string(), "phoneNumber", (val) =>
-    /^(^\+62|62|^08)(\d{3,4}-?){2}\d{3,4}$/g.test(val)
-  ),
+  email: ss.refine(ss.string(), "email", (val) => {
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+      return { message: "Please insert valid email" };
+    }
+    return true;
+  }),
+  phoneNumber: ss.refine(ss.string(), "phoneNumber", (val) => {
+    if (!/^(^\+62|62|^08)(\d{3,4}-?){2}\d{3,4}$/g.test(val)) {
+      return {
+        message: "Please insert valid phone number",
+      };
+    }
+    return true;
+  }),
   age: ss.refine(ss.number(), "age", (val) => {
     if (val < 1) {
       return {

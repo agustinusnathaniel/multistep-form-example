@@ -6,7 +6,7 @@ export const itemFormScheme = ss.refine(
   ss.pick(submissionFormRequestScheme, ["price", "categories", "description"]),
   "itemFormScheme",
   (val) => {
-    if (val.description === "hello" && val.price > 10) {
+    if (!(val.description === "hello" && val.price > 10)) {
       return {
         message: "Price must be > 10 if description is hello",
         path: ["price"],
