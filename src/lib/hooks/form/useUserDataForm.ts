@@ -1,8 +1,8 @@
-import { zodResolver } from "@hookform/resolvers/zod";
+import { superstructResolver } from "@hookform/resolvers/superstruct";
 import { useForm } from "react-hook-form";
 
-import type { UserDataForm } from "lib/models/form/user-data";
-import { userDataFormScheme } from "lib/models/form/user-data";
+import type { UserDataForm } from "lib/models/form-superstruct/user-data";
+import { userDataFormScheme } from "lib/models/form-superstruct/user-data";
 import { useSubmissionFormStore } from "lib/stores/form";
 import { useUserData } from "lib/stores/form/useUserData";
 
@@ -23,7 +23,7 @@ export const useUserDataForm = ({
   } = useForm<UserDataForm>({
     defaultValues: storedUserData,
     mode: "onChange",
-    resolver: zodResolver(userDataFormScheme),
+    resolver: superstructResolver(userDataFormScheme),
   });
 
   const storeUserData = () => {

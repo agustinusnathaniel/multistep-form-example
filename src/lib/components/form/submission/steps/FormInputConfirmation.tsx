@@ -11,7 +11,7 @@ import {
 import type { StepFormWrapperProps } from "lib/components/form/submission/StepFormWrapper";
 import StepFormWrapper from "lib/components/form/submission/StepFormWrapper";
 import { useConfirmation } from "lib/hooks/form/useConfirmation";
-import type { SubmissionFormRequest } from "lib/models/form/request";
+import type { SubmissionFormRequest } from "lib/models/form-superstruct/request";
 
 type FormInputConfirmationProps = Pick<
   StepFormWrapperProps,

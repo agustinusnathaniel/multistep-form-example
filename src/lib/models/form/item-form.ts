@@ -1,6 +1,6 @@
 import type { z } from "zod";
 
-import { submissionFormRequestScheme } from "lib/models/form/request";
+import { submissionFormRequestScheme } from "./request";
 
 export const itemFormScheme = submissionFormRequestScheme
   .pick({

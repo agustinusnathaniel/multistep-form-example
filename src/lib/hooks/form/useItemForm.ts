@@ -1,9 +1,9 @@
-import { zodResolver } from "@hookform/resolvers/zod";
+import { superstructResolver } from "@hookform/resolvers/superstruct";
 import * as React from "react";
 import { useForm } from "react-hook-form";
 
-import type { ItemForm } from "lib/models/form/item-form";
-import { itemFormScheme } from "lib/models/form/item-form";
+import type { ItemForm } from "lib/models/form-superstruct/item-form";
+import { itemFormScheme } from "lib/models/form-superstruct/item-form";
 import { useSubmissionFormStore } from "lib/stores/form";
 
 export interface UseItemFormParams {
@@ -30,7 +30,7 @@ export const useItemForm = ({ onSuccessfulStore }: UseItemFormParams) => {
   } = useForm<ItemForm>({
     defaultValues: defaultValue,
     mode: "onChange",
-    resolver: zodResolver(itemFormScheme),
+    resolver: superstructResolver(itemFormScheme),
   });
 
   const proceedToConfirmation = () => {

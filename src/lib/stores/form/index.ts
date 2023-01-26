@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 
-import type { SubmissionFormRequest } from "lib/models/form/request";
+import type { SubmissionFormRequest } from "lib/models/form-superstruct/request";
 
 type SubmissionFormState = {
   form: SubmissionFormRequest;

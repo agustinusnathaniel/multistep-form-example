@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import type { SubmissionFormRequest } from "lib/models/form/request";
+import type { SubmissionFormRequest } from "lib/models/form-superstruct/request";
 import { useSubmissionFormStore } from "lib/stores/form";
 
 export const useConfirmation = () => {
