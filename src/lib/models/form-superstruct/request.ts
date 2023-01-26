@@ -45,13 +45,6 @@ export const submissionFormRequestScheme = ss.object({
   inviteCode: ss.refine(ss.optional(ss.string()), "inviteCode", () => true),
 });
 
-export type SubmissionFormRequest = {
-  description?: string;
-  inviteCode?: string;
-  name: string;
-  email: string;
-  phoneNumber: string;
-  age: number;
-  price: number;
-  categories: string[];
-};
+export type SubmissionFormRequest = ss.Infer<
+  typeof submissionFormRequestScheme
+>;
