@@ -1,9 +1,10 @@
 import type { CreateToastFnReturn } from "@chakra-ui/react";
 import type { NextRouter } from "next/router";
 import * as React from "react";
+import * as ss from "superstruct";
 
-import type { UserDataForm } from "lib/models/form/user-data";
-import { userDataFormScheme } from "lib/models/form/user-data";
+import type { UserDataForm } from "lib/models/form-superstruct/user-data";
+import { userDataFormScheme } from "lib/models/form-superstruct/user-data";
 
 import { useSubmissionFormStore } from "./index";
 import { showValidationWarning } from "./showValidationWarning";
@@ -19,10 +20,10 @@ export const useUserData = () => {
     }),
     [form]
   );
-  const isUserDataValid = React.useMemo(
-    () => !!userDataFormScheme.safeParse(storedUserData).success,
-    [storedUserData]
-  );
+  const isUserDataValid = React.useMemo(() => {
+    const [err] = ss.validate(storedUserData, userDataFormScheme);
+    return !err;
+  }, [storedUserData]);
 
   return { storedUserData, isUserDataValid };
 };
