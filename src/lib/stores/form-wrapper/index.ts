@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { createJSONStorage, persist } from "zustand/middleware";
 
 type SubmissionFormWrapperState = {
   currentStep: number;
@@ -31,7 +31,7 @@ export const useSubmissionFormWrapperStore = create(
     {
       // btoa("submission-form-wrapper")
       name: "c3VibWlzc2lvbi1mb3JtLXdyYXBwZXI=",
-      getStorage: () => sessionStorage,
+      storage: createJSONStorage(() => sessionStorage),
     }
   )
 );
