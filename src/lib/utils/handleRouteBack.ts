@@ -1,12 +1,27 @@
 import type { NextRouter } from "next/router";
 
+const strategies = ["push", "replace"] as const;
+type ReplaceStrategy = (typeof strategies)[number];
+
+interface HandleRouteBackParams {
+  router: NextRouter;
+  to?: string;
+  strategy?: ReplaceStrategy;
+}
+
 export const handleRouteBack =
-  (router: NextRouter, to = "/") =>
+  ({ router, to = "/", strategy = "replace" }: HandleRouteBackParams) =>
   () => {
-    if (window.history.length > 2 && document.referrer === to) {
+    const requestedPath = `${window.location.protocol}//${window.location.host}${to}`;
+    if (window.history.length > 2 && document.referrer === requestedPath) {
       router.back();
       return;
     }
 
-    router.replace(to);
+    if (strategy === "replace") {
+      router.replace(to);
+      return;
+    }
+
+    router.push(to);
   };

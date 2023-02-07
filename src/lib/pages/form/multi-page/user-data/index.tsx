@@ -9,7 +9,7 @@ const UserDataFormPage = () => {
 
   return (
     <UserDataForm
-      onClickBack={handleRouteBack(router)}
+      onClickBack={handleRouteBack({ router })}
       onSuccessfulStore={proceedToItemForm}
     />
   );

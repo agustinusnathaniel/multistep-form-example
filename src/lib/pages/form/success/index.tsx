@@ -34,7 +34,7 @@ const SuccessPage = () => {
         </AlertDescription>
       </Alert>
 
-      <Button onClick={handleRouteBack(router)}>Back to Home</Button>
+      <Button onClick={handleRouteBack({ router })}>Back to Home</Button>
     </Grid>
   );
 };

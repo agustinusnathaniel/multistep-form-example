@@ -40,7 +40,7 @@ export const useSubmissionFormWrapper = () => {
 
   const handleTapBack = () => {
     if (currentStep <= 1) {
-      handleRouteBack(router)();
+      handleRouteBack({ router })();
       return;
     }
     setCurrentStep(currentStep - 1);
